@@ -1,0 +1,27 @@
+{
+  "production": {
+    "db_host": "tab.noynh.mongodb.net",
+    "db_database": "highbot?retryWrites=true&w=majority",
+    "db_port": "27017",
+    "tab_db_user": "tab",
+    "tab_db_password": "YLToce2gW7ZtGay1"
+  },
+
+  "qa": {
+    "db_host": "localhost",
+    "db_user": "root",
+    "db_port": 27017,
+    "db_password": "qwerty",
+    "db_database": "highbot",
+    "tab_db_password": "VE$LkjeKnJHAk9?^+bKCvsT-&fsBVX3?DEcWn9nS9CUDvAR8XK"
+  },
+
+  "development": {
+    "db_host": "localhost",
+    "db_user": "root",
+    "db_port": 27017,
+    "db_password": "root",
+    "db_database": "highbot",
+    "wei_db_password": "root"
+  }
+}

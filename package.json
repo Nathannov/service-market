@@ -1,0 +1,25 @@
+{
+  "name": "service-market",
+  "version": "1.0.0",
+  "description": "Socket to save market binance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start_local": "node -r dotenv/config index.js",
+    "nodemon": "nodemon -r dotenv/config index.js"
+  },
+  "keywords": [
+    "socket",
+    "binance",
+    "market",
+    "mongo"
+  ],
+  "author": "Nathan - Neydor",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongoose": "^6.0.4",
+    "node-binance-api": "^0.13.0",
+    "nodemon": "^2.0.12"
+  }
+}
