@@ -1,10 +1,10 @@
 {
   "production": {
-    "db_host": "tab.noynh.mongodb.net",
-    "db_database": "highbot?retryWrites=true&w=majority",
+    "db_host": "",
+    "db_database": "",
     "db_port": "27017",
-    "tab_db_user": "tab",
-    "tab_db_password": "YLToce2gW7ZtGay1"
+    "tab_db_user": "",
+    "tab_db_password": ""
   },
 
   "qa": {
