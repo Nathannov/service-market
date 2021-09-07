@@ -43,7 +43,7 @@ async function binanceSaveMarketWithSocket(marketables) {
 
             saveTemporalPairsBNNC.push(summary.symbol);
             date_created = new Date();
-            //let percent = parseFloat(summary.percentChange).toFixed(2);
+            let percent = parseFloat(summary.percentChange).toFixed(2);
             let currentData = {
                 broker: 3,
                 name: summary.symbol,
@@ -55,7 +55,7 @@ async function binanceSaveMarketWithSocket(marketables) {
                 volume: summary.quoteVolume,
                 mod: 0,
                 date_created: date_created,
-                percent: 0,
+                percent: percent,
             };
 
             await global.mongodb.saveItem("market", currentData);
