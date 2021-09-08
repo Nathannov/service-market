@@ -15,8 +15,7 @@ const sleep = async (time) => {
 
 const timeToCallMarket = async () => {
 
-    date_created = new Date();
-    let initialSecond = date_created.getSeconds();
+    let initialSecond = new Date().getSeconds();
 
     if (initialSecond <= 5 || (initialSecond >= 30 && initialSecond <= 35)) {
         inside = false;
@@ -26,7 +25,13 @@ const timeToCallMarket = async () => {
         stopSocket();
     }
     else {
-        await sleep(1000);
+        //calculate time to sleep
+        let timeToSleep = 0;
+        if (initialSecond > 5 && initialSecond < 30)
+            timeToSleep = 31 - initialSecond;
+        else timeToSleep = 61 - initialSecond;
+
+        await sleep(timeToSleep * 1000);
         timeToCallMarket();
     }
 };
@@ -42,7 +47,7 @@ async function binanceSaveMarketWithSocket(marketables) {
         if (saveTemporalPairsBNNC.indexOf(summary.symbol) === -1) {
 
             saveTemporalPairsBNNC.push(summary.symbol);
-            date_created = new Date();
+            let date_created = new Date();
             let percent = parseFloat(summary.percentChange).toFixed(2);
             let currentData = {
                 broker: 3,
@@ -72,7 +77,7 @@ async function binanceSaveMarketWithSocket(marketables) {
 
 async function stopSocket() {
 
-    await sleep(60000 * 60);
+    await sleep(60000 * 60); //sleep one hour
     let endpoints = binance.websockets.subscriptions();
     for (let endpoint in endpoints) {
         binance.websockets.terminate(endpoint);
@@ -83,4 +88,7 @@ async function stopSocket() {
     timeToCallMarket();
 }
 
-timeToCallMarket();
+(async () => {
+    await sleep(3000);
+    timeToCallMarket();
+})();
