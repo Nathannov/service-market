@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
 var market = new mongoose.Schema({
     broker: {
         type: Number,
@@ -53,4 +54,5 @@ var market = new mongoose.Schema({
         default: 0
     }
 });
+market.plugin(uniqueValidator);
 module.exports = mongoose.model('market', market);

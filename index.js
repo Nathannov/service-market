@@ -21,6 +21,7 @@ const timeToCallMarket = async () => {
         inside = false;
 
         const marketables = await markettableList.getAllActualMarketable();
+        console.log(marketables);
         binanceSaveMarketWithSocket(marketables);
         stopSocket();
     }
@@ -37,8 +38,7 @@ const timeToCallMarket = async () => {
 };
 
 async function binanceSaveMarketWithSocket(marketables) {
-
-    console.info("Start BinanceSaveMarketWithSocket BNNC...");
+    console.info(new Date().toISOString(), "Start BinanceSaveMarketWithSocket BNNC...");
     let saveTemporalPairsBNNC = [];
 
     binance.websockets.prevDay(marketables, async (err, summary) => {
@@ -77,13 +77,13 @@ async function binanceSaveMarketWithSocket(marketables) {
 
 async function stopSocket() {
 
-    await sleep(60000 * 60); //sleep one hour
+    await sleep(60000 * 30); //sleep 30 minutes
     let endpoints = binance.websockets.subscriptions();
     for (let endpoint in endpoints) {
         binance.websockets.terminate(endpoint);
     }
 
-    console.info("End BinanceSaveMarketWithSocket BNNC...");
+    console.info(new Date().toISOString(), "End BinanceSaveMarketWithSocket BNNC...");
     await sleep(30000);
     timeToCallMarket();
 }
